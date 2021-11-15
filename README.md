@@ -37,7 +37,7 @@ npm run build:watch
 ### Run tests
 ```
 npm run test
-nnpm run test:watch
+npm run test:watch
 ```
 
 ### Run lint check
