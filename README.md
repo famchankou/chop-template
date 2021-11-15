@@ -35,3 +35,6 @@ npm run lint
 ```
 npm run view:coverage
 ```
+
+![image](https://user-images.githubusercontent.com/20913597/141831343-aee6ddc4-2bd3-4ab1-affa-6deabbbc6c99.png)
+
