@@ -1,3 +1,9 @@
+#ignore build
+build/**/*.js
+build/**/*.map
+build/**/*d.ts
+coverage
+
 # Logs
 logs
 *.log
