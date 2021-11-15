@@ -1,6 +1,6 @@
 {
   "name": "chop-template",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -12,11 +12,11 @@
     "view:coverage": "serve coverage/lcov-report",
     "clean": "rm -rf coverage src/**/*.js src/**/*.map",
     "lint": "eslint . --ext .ts",
-    "prepare" : "npm run build",
-    "prepublishOnly" : "npm test && npm run lint",
-    "preversion" : "npm run lint",
-    "version" : "git add -A src",
-    "postversion" : "git push && git push --tags"
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
