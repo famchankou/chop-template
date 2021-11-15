@@ -1,23 +1,35 @@
 import { Config, ResultDict } from '../models';
-import { objectPropsToMap, parseTemplateString } from '../utils';
+import {
+  replaceAllOccurrences,
+  parseTemplateString,
+  objectPropsToMap,
+  parseMustache,
+} from '../utils';
 
 /**
  * Template parser
+ * 
+ * - Interpolates config values into the provided template string
+ * - Validates config values to parse only numbers and strings
+ * - Throws error on invalid template variable, invalid value type or if there is no config for a cretain template variable
  */
 export class Parser {
   public static parseTemplate(template: string, dataset: Config): string {
     const propsMap: ResultDict = objectPropsToMap(dataset);
-    const tokens: Map<string, number[][]> = parseTemplateString(template);
+    const tokens: Map<string, string> = parseTemplateString(template);
 
-    tokens.forEach((occurrences: number[][], token: string) => {
+    tokens.forEach((match: string, token: string) => {
       if (propsMap.has(token)) {
         const value = propsMap.get(token);
-
-        for (const [start, end] of occurrences) {
-          template = template.substring(0, start) + value + template.substring(end);
-        }
+        template = replaceAllOccurrences(template, match, value);
       }
     });
+
+    const unresolvedVariables = parseMustache(template);
+    if (unresolvedVariables.length) {
+      const value = unresolvedVariables.pop();
+      throw new Error(`Unresolved template variable: ${value}`);
+    }
 
     return template;
   }

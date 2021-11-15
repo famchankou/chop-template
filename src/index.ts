@@ -3,6 +3,7 @@ import { Parser } from './parser';
 import { isObject } from './utils';
 
 /**
+ * String template parser, interpolates the variables provided via config into a string
  * 
  * @param template string to interpolate values into
  * @param dataset an object config for template values
